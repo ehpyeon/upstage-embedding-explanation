@@ -7,7 +7,7 @@ import os
 import json
 from dotenv import load_dotenv
 from datetime import datetime
-import openai  # OpenAI 모듈 자체를 임포트
+from openai import OpenAI  # 새로운 OpenAI 클라이언트 임포트
 
 # .env 파일에서 환경 변수 로드
 load_dotenv()
@@ -19,10 +19,6 @@ CORS(app)  # 프론트엔드와 연동을 위해 CORS 활성화
 UPSTAGE_API_KEY = os.getenv("UPSTAGE_API_KEY")
 UPSTAGE_API_BASE_URL = "https://api.upstage.ai/v1/solar"  # 올바른 base_url
 UPSTAGE_EMBEDDING_MODEL = "embedding-query"  # 올바른 모델명
-
-# openai 설정
-openai.api_key = UPSTAGE_API_KEY
-openai.api_base = UPSTAGE_API_BASE_URL
 
 # 문장 데이터베이스 파일 경로
 SENTENCES_DB = "sentences_db.json"
@@ -39,19 +35,25 @@ def save_sentences_db(db):
     with open(SENTENCES_DB, 'w', encoding='utf-8') as f:
         json.dump(db, f, ensure_ascii=False, indent=2)
 
-# Upstage 임베딩 생성 함수 (이전 버전 openai 라이브러리 사용)
+# Upstage 임베딩 생성 함수 (OpenAI 1.0.0 API 사용)
 def get_upstage_embeddings(texts):
+    # OpenAI 클라이언트 초기화
+    client = OpenAI(
+        api_key=UPSTAGE_API_KEY,
+        base_url=UPSTAGE_API_BASE_URL
+    )
+    
     # 단일 문자열과 문자열 리스트를 모두 처리할 수 있도록 함
     if isinstance(texts, str):
         texts = [texts]
     
     embeddings = []
     for text in texts:
-        response = openai.Embedding.create(
+        response = client.embeddings.create(
             input=text,
             model=UPSTAGE_EMBEDDING_MODEL
         )
-        embeddings.append(response["data"][0]["embedding"])
+        embeddings.append(response.data[0].embedding)
     
     return embeddings
 
