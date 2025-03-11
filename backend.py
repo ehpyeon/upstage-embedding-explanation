@@ -1,3 +1,4 @@
+import werkzeug
 from flask import Flask, request, jsonify, send_file
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
