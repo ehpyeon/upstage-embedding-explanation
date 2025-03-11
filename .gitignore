@@ -1,9 +1,6 @@
 # 환경 변수 파일
 .env
 
-# Render 설정 파일 (API 키가 포함된 경우)
-render.yaml
-
 # 데이터베이스 파일
 sentences_db.json
 

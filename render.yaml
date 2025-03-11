@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: sentence-similarity-tool
+    env: docker
+    envVars:
+      - key: UPSTAGE_API_KEY
+        sync: false  # Render 대시보드에서 설정하도록 지정 
