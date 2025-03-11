@@ -14,7 +14,7 @@ RUN pip install --upgrade pip && \
 COPY . .
 
 # 포트 설정
-ENV PORT=5003
+ENV PORT=10000
 EXPOSE $PORT
 
 # 환경 변수 사용
