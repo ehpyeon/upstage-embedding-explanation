@@ -107,8 +107,8 @@ MIT License
 
 ## 연락처
 
-프로젝트 관리자: [이메일 주소]
+프로젝트 관리자: Van(euihyeon.pyeon@upstage.ai)
 
 ---
 
-이 프로젝트는 Upstage의 임베딩 API를 활용합니다. 자세한 내용은 [Upstage 공식 문서](https://upstage.ai)를 참조하세요. 
+이 프로젝트는 Upstage의 임베딩 API를 활용합니다. 자세한 내용은 [Upstage 공식 문서](https://console.upstage.ai/docs/capabilities/embeddings)를 참조하세요. 
